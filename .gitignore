@@ -1,9 +1,40 @@
-.idea
-.DS_Store
-*.zip
-*.tar.gz
-venv
+# Python関連
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 仮想環境（既に含まれていますが、明示的に記述）
+venv/
 myenv/
-/data
-/results
-/data_failed
+ENV/
+
+# OS生成ファイル
+.DS_Store
+Thumbs.db
+
+# エディタ/IDE関連
+.vscode/
+*.swp
+*.swo
+
+# ログファイル
+*.log
+
+# 一時ファイル
+*.tmp
+
+# コンパイル済みファイル
+*.so
+*.dylib
+
+# パッケージング
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
