@@ -345,23 +345,18 @@ def get_cluster_centers(new_centers=False):
     return centers
 
 def classify(path_to_palmline_image):
-    # load (rectified) test data
-    # num_data = 10
-    # load_data(num_data)
-    
     # get cluster centers
     centers = get_cluster_centers()
 
     palmline_img = cv2.imread(path_to_palmline_image)
-    kernel = np.ones((3, 3), np.uint8)
-    # dilated = cv2.dilate(palmline_img, kernel, iterations=3)
-    # eroded = cv2.erode(dilated, kernel, iterations=3)
-    skel_img = cv2.cvtColor(skeletonize(palmline_img), cv2.COLOR_BGR2GRAY)
     
-    #cv2.imwrite('results/skel.jpg',skel_img)
+    # スケルトン化を適用
+    skel = skeletonize(cv2.cvtColor(palmline_img, cv2.COLOR_BGR2GRAY))
+    
+    # boolean型のアレイをuint8型に変換
+    skel_img = (skel * 255).astype(np.uint8)
     
     lines = group(skel_img)  # get candidate lines
     lines = classify_lines(centers, lines, palmline_img.shape[0], palmline_img.shape[1])  # choose 3 lines from candidates
-    # colored_img = color(skel_img, classified_lines) # color 3 lines (RGB)
 
     return lines
